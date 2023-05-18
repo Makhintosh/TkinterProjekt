@@ -33,7 +33,7 @@ last_name_entry.grid(row=1, column=1, padx=10, pady=5)
 
 age_label = tk.Label(form_frame, text="Wiek:")
 age_label.grid(row=2, column=0, padx=10, pady=5)
-age_entry = tk.Entry(form_frame)
+age_entry = tk.Spinbox(form_frame, from_=13, to=120)
 age_entry.grid(row=2, column=1, padx=10, pady=5)
 
 city_label = tk.Label(form_frame, text="Miasta")
