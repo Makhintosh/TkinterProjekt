@@ -1,28 +1,59 @@
 import tkinter as tk
 
+def submit_form():
+    first_name = first_name_entry.get()
+    last_name = last_name_entry.get()
+    age = age_entry.get()
+    city = city_dropdown.get()
+    height = height_slider.get()
+
+    if not first_name or not last_name or not age or not city:
+        result_label.config(text="Uzupełnij brakujące pola")
+        return
+    
+    result_label.config(text=f"Zarejestrowano {first_name} {last_name}, {age} lat, z {city}, wzrost: {height}cm")
+
 okno = tk.Tk()
 okno.title("Zakład pogrzebowy")
 
-firma_label = tk.Label(okno, text="Zakład pogrzebowy 'Żyć nie umierać'", font=("Arial", 16, "bold"))
-firma_label.pack(pady=10)
+company_label = tk.Label(okno, text="Zakład pogrzebowy żyć nie umierać", font=("", 20, "bold"))
+company_label.pack(pady=20)
 
-imie_entry = tk.Entry(okno, width=30)
-imie_entry.pack(pady=5)
+form_frame = tk.Frame(okno)
 
-nazwisko_entry = tk.Entry(okno, width=30)
-nazwisko_entry.pack(pady=5)
+first_name_label = tk.Label(form_frame, text="Imię:")
+first_name_label.grid(row=0, column=0, padx=10, pady=5)
+first_name_entry = tk.Entry(form_frame)
+first_name_entry.grid(row=0, column=1, padx=10, pady=5)
 
-wiek_entry = tk.Entry(okno, width=10)
-wiek_entry.pack(pady=5)
+last_name_label = tk.Label(form_frame, text="Nazwisko:")
+last_name_label.grid(row=1, column=0, padx=10, pady=5)
+last_name_entry = tk.Entry(form_frame)
+last_name_entry.grid(row=1, column=1, padx=10, pady=5)
 
-miasta = ["Warszawa", "Kraków", "Gdańsk", "Olsztyn", "Poznań", "Wrocław"]
-miasta_var = tk.StringVar(value=miasta[0])
-miasta_dropdown = tk.OptionMenu(okno, miasta_var, *miasta)
-miasta_dropdown.pack(pady=5)
+age_label = tk.Label(form_frame, text="Wiek:")
+age_label.grid(row=2, column=0, padx=10, pady=5)
+age_entry = tk.Entry(form_frame)
+age_entry.grid(row=2, column=1, padx=10, pady=5)
 
-def wyslij_form():
-    imie = imie_entry.get()
-    nazwisko = nazwisko_entry.get()
-    wiek = wiek_entry.get()
-    miasta = miasta_var.get()
+city_label = tk.Label(form_frame, text="Miasta")
+city_label.grid(row=3, column=0, padx=10, pady=5)
+cities = ["Warszawa", "Kraków", "Poznań", "Olsztyn", "Gdańsk", "Szczytno", "Wrocław"]
+city_dropdown = tk.StringVar(value=cities[0])
+city_dropdown_menu = tk.OptionMenu(form_frame, city_dropdown, *cities)
+city_dropdown_menu.grid(row=3, column=1, padx=10, pady=5)
 
+height_label = tk.Label(form_frame, text="Wzrost:")
+height_label.grid(row=4, column=0, padx=10, pady=5)
+height_slider = tk.Scale(form_frame, from_=100, to=220, orient=tk.HORIZONTAL)
+height_slider.grid(row=4, column=1, padx=10, pady=5)
+
+submit_button = tk.Button(form_frame, text="Zatwierdź", command=submit_form)
+submit_button.grid(row=5, column=0, padx=10, pady=20)
+
+result_label = tk.Label(form_frame, text="")
+result_label.grid(row=6, column=0, columnspan=2)
+
+form_frame.pack(pady=20)
+
+okno.mainloop()
