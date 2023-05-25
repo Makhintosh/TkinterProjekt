@@ -1,5 +1,6 @@
 import tkinter as tk
-import os
+from tkinter import *
+from PIL import ImageTk, Image
 
 
 def submit_form():
@@ -30,10 +31,6 @@ def reset_form():
 okno = tk.Tk()
 okno.title("Zakład pogrzebowy")
 okno.geometry("700x450")
-
-scriptDir = os.path.dirname(__file__)
-os.chdir(scriptDir)
-logo = tk.PhotoImage(file="img.png")
 
 company_label = tk.Label(
     okno, text="Zakład pogrzebowy żyć nie umierać", font=("", 20, "bold"))
@@ -79,5 +76,12 @@ result_label = tk.Label(form_frame, text="")
 result_label.grid(row=6, column=0, columnspan=2)
 
 form_frame.pack(pady=20)
+
+img = Image.open("img.png")
+img = img.resize((300, 250), Image.ANTIALIAS)
+photo = ImageTk.PhotoImage(img)
+
+label = Label(okno, image=photo)
+label.pack()
 
 okno.mainloop()
