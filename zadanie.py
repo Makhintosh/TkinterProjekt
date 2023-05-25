@@ -1,6 +1,6 @@
-import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
+import tkinter as tk
 
 
 def submit_form():
@@ -32,15 +32,33 @@ okno = tk.Tk()
 okno.title("Zakład pogrzebowy")
 okno.geometry("700x450")
 
-img = Image.open("nagrobek.jpg")
-background_image = ImageTk.PhotoImage(img)
+# bg = ImageTk.PhotoImage(file="nagrobek.jpg")
 
-background_label = tk.Label(okno, image=background_image)
-background_label.place(x=0, y=0, relwidth=1, relheight=1)
-background_label.image = background_image
+# # Create a Canvas
+# canvas = Canvas(okno, width=700, height=3500)
+# canvas.pack(fill=BOTH, expand=True)
 
-background_label.configure(image=background_image, anchor="nw")
-background_label.bind('<Configure>', lambda e: background_label.configure(image=background_image))
+# # Add Image inside the Canvas
+# canvas.create_image(0, 0, image=bg, anchor='nw')
+
+# # Function to resize the window
+# def resize_image(e):
+#    global image, resized, image2
+#    # open image to resize it
+#    image = Image.open("nagrobek.jpg")
+#    # resize the image with width and height of root
+#    resized = image.resize((e.width, e.height), Image.ANTIALIAS)
+
+#    image2 = ImageTk.PhotoImage(resized)
+#    canvas.create_image(0, 0, image=image2, anchor='nw')
+
+# # Bind the function to configure the parent window
+# okno.bind("<Configure>", resize_image)
+
+bg = PhotoImage(file = "nagrobek.png")
+
+label1 = Label( okno, image = bg)
+label1.place(x = 0, y = 0)
 
 company_label = tk.Label(
     okno, text="Zakład pogrzebowy żyć nie umierać", font=("", 20, "bold"))
