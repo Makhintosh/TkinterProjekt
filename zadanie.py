@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import *
+from PIL import ImageTk, Image
 
 
 def submit_form():
@@ -29,6 +31,16 @@ def reset_form():
 okno = tk.Tk()
 okno.title("Zakład pogrzebowy")
 okno.geometry("700x450")
+
+img = Image.open("nagrobek.jpg")
+background_image = ImageTk.PhotoImage(img)
+
+background_label = tk.Label(okno, image=background_image)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
+background_label.image = background_image
+
+background_label.configure(image=background_image, anchor="nw")
+background_label.bind('<Configure>', lambda e: background_label.configure(image=background_image))
 
 company_label = tk.Label(
     okno, text="Zakład pogrzebowy żyć nie umierać", font=("", 20, "bold"))
@@ -73,6 +85,6 @@ reset_button.grid(row=5, column=1, padx=10, pady=20)
 result_label = tk.Label(form_frame, text="")
 result_label.grid(row=6, column=0, columnspan=2)
 
-form_frame.grid(pady="20")
+form_frame.pack(pady=20)
 
 okno.mainloop()
