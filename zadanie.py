@@ -1,6 +1,5 @@
-from tkinter import *
-from PIL import ImageTk, Image
 import tkinter as tk
+import os
 
 
 def submit_form():
@@ -32,33 +31,9 @@ okno = tk.Tk()
 okno.title("Zakład pogrzebowy")
 okno.geometry("700x450")
 
-# bg = ImageTk.PhotoImage(file="nagrobek.jpg")
-
-# # Create a Canvas
-# canvas = Canvas(okno, width=700, height=3500)
-# canvas.pack(fill=BOTH, expand=True)
-
-# # Add Image inside the Canvas
-# canvas.create_image(0, 0, image=bg, anchor='nw')
-
-# # Function to resize the window
-# def resize_image(e):
-#    global image, resized, image2
-#    # open image to resize it
-#    image = Image.open("nagrobek.jpg")
-#    # resize the image with width and height of root
-#    resized = image.resize((e.width, e.height), Image.ANTIALIAS)
-
-#    image2 = ImageTk.PhotoImage(resized)
-#    canvas.create_image(0, 0, image=image2, anchor='nw')
-
-# # Bind the function to configure the parent window
-# okno.bind("<Configure>", resize_image)
-
-bg = PhotoImage(file = "nagrobek.png")
-
-label1 = Label( okno, image = bg)
-label1.place(x = 0, y = 0)
+scriptDir = os.path.dirname(__file__)
+os.chdir(scriptDir)
+logo = tk.PhotoImage(file="img.png")
 
 company_label = tk.Label(
     okno, text="Zakład pogrzebowy żyć nie umierać", font=("", 20, "bold"))
